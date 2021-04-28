@@ -1,0 +1,9 @@
+#progressBar {
+    width: 10%;
+    background-color: rgb(223, 217, 217);
+  }
+  #faimBar {
+    width: 0%;
+    height: 30px;
+    background-color: green;
+  }
