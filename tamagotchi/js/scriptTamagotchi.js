@@ -44,15 +44,24 @@ function updateState(){
 }
 
 // Fonction de mise à jour de l'image de tamagotchi
-function UpdateImage(){
+function updateImage(){
     if (self.etat == "Mort") {    
-            document.getElementById("monImage").src = "ressources/tamagotchi_mort.gif";  
-            clearInterval(intervale);  
+            document.getElementById("monImage").src = "ressources/tamagotchi_mort.gif";   
     } else if (self.etat == "Malade") {
         document.getElementById("monImage").src = "ressources/tamagotchi_malade.gif";
     }
 }
 
+// Fonction mise à jour boutton
+function updateControl() {
+
+    // si tamagitchi est mort on cache tous ls boutons et on arrête la fonction vie
+    if (self.etat == "Mort") {
+        clearInterval(intervale);
+        document.getElementById('Soigner').style.display ="none";
+         
+    }
+}
 
 
 // Fonctions de mise à jours des caractéristiques de tamagotchi
@@ -62,7 +71,9 @@ function setFaim(value){
     faim.textContent = valeurDansLesBornes;
     setProgressBarValue(valeurDansLesBornes,"faimBar");
     updateState();
-    UpdateImage();
+    updateImage();
+    updateControl();
+    
 
 }
 function setSoif(value){
@@ -71,7 +82,7 @@ function setSoif(value){
     soif.textContent = valeurDansLesBornes;
     setProgressBarValue(valeurDansLesBornes,"soifBar");
     updateState();
-    UpdateImage();
+    updateImage();
 }
 
 function setSante(value){
@@ -80,7 +91,7 @@ function setSante(value){
     sante.textContent = valeurDansLesBornes;
     setProgressBarValue(valeurDansLesBornes,"santeBar");
     updateState();
-    UpdateImage();
+    updateImage();
 }
 
 function setDormir(value){
@@ -89,7 +100,7 @@ function setDormir(value){
     dormir.textContent = valeurDansLesBornes;
     setProgressBarValue(valeurDansLesBornes,"dormirBar");
     updateState();
-    UpdateImage();
+    updateImage();
 }
 function setHummeur(value){
     valeurDansLesBornes = dansInterval(value);
@@ -97,13 +108,12 @@ function setHummeur(value){
     hummeur.textContent = valeurDansLesBornes;
     setProgressBarValue(valeurDansLesBornes,"hummeurBar");
     updateState();
-    UpdateImage();
+    updateImage();
 }
 // Focntion qui simule 1 an de vie de tamagotchi
 function vivre() {
     setFaim( parseInt(faim.textContent) - 1 );
-    setSoif( parseInt(soif.textContent) - 1 );
-    
+    setSoif( parseInt(soif.textContent) - 1 ); 
     setSante( parseInt(sante.textContent) - 1);
     setDormir( parseInt(dormir.textContent) - 1);
     setHummeur( parseInt(hummeur.textContent) - 1);
@@ -117,8 +127,7 @@ document.addEventListener('DOMContentLoaded', init, false);
 function init(){
     self.etat = "Normal";
     function nourrir(){
-        setFaim( parseInt(faim.textContent) + 5 );
-        
+        setFaim( parseInt(faim.textContent) + 5 );      
     }
     document.getElementById('Nourrir').addEventListener('click', nourrir, true);
 
@@ -141,6 +150,6 @@ function init(){
         setHummeur(parseInt(hummeur.textContent) + 5 );
     }
     document.getElementById('Jouer').addEventListener('click',hummeur, true);
-};
+}
 
-// progress bar 
+
