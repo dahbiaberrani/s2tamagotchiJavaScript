@@ -1,4 +1,4 @@
-var intervale = setInterval("vivre()",2000);
+var intervale = setInterval("vivre()",200);
 // fonction qui garantie que la valeur des cractéristiques restent entre 0 et 100  
 function dansInterval(valeur){
     if (valeur > 100) {
@@ -14,6 +14,7 @@ function dansInterval(valeur){
     return returnvaleur;
 }
 
+// Fonction mise à jours des bars de progression
 function setProgressBarValue(value,progressBarName){ 
      
     var elmentProgressBarValue = document.getElementById(progressBarName);  
@@ -29,42 +30,76 @@ function setProgressBarValue(value,progressBarName){
     elmentProgressBarValue.style.background = color;
 }
 
-    
+// Fonction mise à jour etat de tamagotchi
+function updateState(){
+
+    // Voir si tamagotchi est mort
+    if ( (parseInt(faim.textContent) == 0) || (parseInt(soif.textContent) == 0) || (parseInt(sante.textContent) == 0) || (parseInt(hummeur.textContent) == 0) || (parseInt(dormir.textContent) == 0)){		
+        self.etat = "Mort"; 
+    }
+    else if (parseInt(sante.textContent) < 50) {
+        self.etat = "Malade"; 
+    }
+
+}
+
+// Fonction de mise à jour de l'image de tamagotchi
+function UpdateImage(){
+    if (self.etat == "Mort") {    
+            document.getElementById("monImage").src = "ressources/tamagotchi_mort.gif";  
+            clearInterval(intervale);  
+    } else if (self.etat == "Malade") {
+        document.getElementById("monImage").src = "ressources/tamagotchi_malade.gif";
+    }
+}
 
 
+
+// Fonctions de mise à jours des caractéristiques de tamagotchi
 function setFaim(value){
     valeurDansLesBornes = dansInterval(value);
     //Mise à jour de l'interface graphique
     faim.textContent = valeurDansLesBornes;
     setProgressBarValue(valeurDansLesBornes,"faimBar");
+    updateState();
+    UpdateImage();
+
 }
 function setSoif(value){
     valeurDansLesBornes = dansInterval(value);
     //Mise à jour de l'interface graphique
     soif.textContent = valeurDansLesBornes;
-    setProgressBarValue(valeurDansLesBornes,"soifBar")
+    setProgressBarValue(valeurDansLesBornes,"soifBar");
+    updateState();
+    UpdateImage();
 }
 
 function setSante(value){
     valeurDansLesBornes = dansInterval(value);
     //Mise à jour de l'interface graphique
     sante.textContent = valeurDansLesBornes;
-    setProgressBarValue(valeurDansLesBornes,"santeBar")
+    setProgressBarValue(valeurDansLesBornes,"santeBar");
+    updateState();
+    UpdateImage();
 }
 
 function setDormir(value){
     valeurDansLesBornes = dansInterval(value);
     //Mise à jour de l'interface graphique
     dormir.textContent = valeurDansLesBornes;
-    setProgressBarValue(valeurDansLesBornes,"dormirBar")
+    setProgressBarValue(valeurDansLesBornes,"dormirBar");
+    updateState();
+    UpdateImage();
 }
 function setHummeur(value){
     valeurDansLesBornes = dansInterval(value);
     //Mise à jour de l'interface graphique
     hummeur.textContent = valeurDansLesBornes;
-    setProgressBarValue(valeurDansLesBornes,"hummeurBar")
+    setProgressBarValue(valeurDansLesBornes,"hummeurBar");
+    updateState();
+    UpdateImage();
 }
-
+// Focntion qui simule 1 an de vie de tamagotchi
 function vivre() {
     setFaim( parseInt(faim.textContent) - 1 );
     setSoif( parseInt(soif.textContent) - 1 );
@@ -73,11 +108,6 @@ function vivre() {
     setDormir( parseInt(dormir.textContent) - 1);
     setHummeur( parseInt(hummeur.textContent) - 1);
 
-    // mort de tamagotchi
-    if ( (parseInt(faim.textContent) <= 0) || (parseInt(soif.textContent) <= 0) || (parseInt(sante.textContent) <= 0) || (parseInt(jouer.textContent) <= 0) || (parseInt(dormir.textContent) <= 0)){		
-       clearInterval(intervale); 
-        //cacher bouton ou empecher utilsation
-    }
 }
 
 
@@ -85,6 +115,7 @@ function vivre() {
 document.addEventListener('DOMContentLoaded', init, false);
 
 function init(){
+    self.etat = "Normal";
     function nourrir(){
         setFaim( parseInt(faim.textContent) + 5 );
         

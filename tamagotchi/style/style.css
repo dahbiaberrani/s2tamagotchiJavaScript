@@ -31,4 +31,9 @@
 #caracteristique{
     
     display: inline-block;
+    
+}
+img{
+    display: inline-block;
+    padding-left: 200px;
 }
