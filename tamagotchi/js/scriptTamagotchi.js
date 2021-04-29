@@ -59,6 +59,10 @@ function updateControl() {
     if (self.etat == "Mort") {
         clearInterval(intervale);
         document.getElementById('Soigner').style.display ="none";
+        document.getElementById('Nourrir').style.display="none";
+        document.getElementById('Boire').style.display="none";
+        document.getElementById('Jouer').style.display="none";
+        document.getElementById('Dormir').style.display="none";
          
     }
 }
@@ -117,7 +121,6 @@ function vivre() {
     setSante( parseInt(sante.textContent) - 1);
     setDormir( parseInt(dormir.textContent) - 1);
     setHummeur( parseInt(hummeur.textContent) - 1);
-
 }
 
 
