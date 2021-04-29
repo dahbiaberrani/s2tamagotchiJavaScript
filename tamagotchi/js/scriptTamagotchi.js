@@ -1,4 +1,4 @@
-var intervale = setInterval("vivre()",200);
+var intervale = setInterval("vivre()",2000);
 // fonction qui garantie que la valeur des cractéristiques restent entre 0 et 100  
 function dansInterval(valeur){
     if (valeur > 100) {
@@ -34,7 +34,7 @@ function setProgressBarValue(value,progressBarName){
 function updateState(){
 
     // Voir si tamagotchi est mort
-    if ( (parseInt(faim.textContent) == 0) || (parseInt(soif.textContent) == 0) || (parseInt(sante.textContent) == 0) || (parseInt(hummeur.textContent) == 0) || (parseInt(dormir.textContent) == 0)){		
+    if ( (parseInt(faim.textContent) == 0) || (parseInt(soif.textContent) == 0) || (parseInt(sante.textContent) == 0) || (parseInt(hummeur.textContent) == 0) || (parseInt(sommeil.textContent) == 0)){		
         self.etat = "Mort"; 
     }
     else if (parseInt(sante.textContent) < 50) {
@@ -101,7 +101,7 @@ function setSante(value){
 function setDormir(value){
     valeurDansLesBornes = dansInterval(value);
     //Mise à jour de l'interface graphique
-    dormir.textContent = valeurDansLesBornes;
+    sommeil.textContent = valeurDansLesBornes;
     setProgressBarValue(valeurDansLesBornes,"dormirBar");
     updateState();
     updateImage();
@@ -114,15 +114,22 @@ function setHummeur(value){
     updateState();
     updateImage();
 }
-// Focntion qui simule 1 an de vie de tamagotchi
-function vivre() {
-    setFaim( parseInt(faim.textContent) - 1 );
-    setSoif( parseInt(soif.textContent) - 1 ); 
-    setSante( parseInt(sante.textContent) - 1);
-    setDormir( parseInt(dormir.textContent) - 1);
-    setHummeur( parseInt(hummeur.textContent) - 1);
+
+// Fonction qui renvoie un nombre aléatoire entre min et max
+function entierAleatoire(min, max)
+{
+    return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
+// Focntion qui simule 1 an de vie de tamagotchi
+function vivre() {
+    
+    setFaim( parseInt(faim.textContent) - entierAleatoire(1, 7) );
+    setSoif( parseInt(soif.textContent) - entierAleatoire(1, 7) ); 
+    setSante( parseInt(sante.textContent) - entierAleatoire(1, 7));
+    setDormir( parseInt(sommeil.textContent) - entierAleatoire(1, 7));
+    setHummeur( parseInt(hummeur.textContent) - entierAleatoire(1, 7));
+}
 
 
 document.addEventListener('DOMContentLoaded', init, false);
@@ -145,7 +152,7 @@ function init(){
     document.getElementById('Soigner').addEventListener('click',soigner, true);
 
     function dormir(){
-        setDormir(parseInt(dormir.textContent) + 5 );
+        setDormir(parseInt(sommeil.textContent) + 5 );
     }
     document.getElementById('Dormir').addEventListener('click',dormir, true);
 
