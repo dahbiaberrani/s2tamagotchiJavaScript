@@ -1,9 +1,34 @@
 #progressBar {
     width: 10%;
+    height: 30px;
     background-color: rgb(223, 217, 217);
   }
   #faimBar {
     width: 0%;
     height: 30px;
-    background-color: green;
+    background: green;
   }
+  #soifBar {
+    width: 0%;
+    height: 30px;
+    background: green;
+  }
+  #santeBar {
+    width: 0%;
+    height: 30px;
+    background: green;
+  }
+  #dormirBar {
+    width: 0%;
+    height: 30px;
+    background: green;
+  }
+  #hummeurBar {
+    width: 0%;
+    height: 30px;
+    background: green;
+  }
+#caracteristique{
+    
+    display: inline-block;
+}
