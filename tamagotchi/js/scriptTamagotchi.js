@@ -46,9 +46,11 @@ function updateState(){
 // Fonction de mise à jour de l'image de tamagotchi
 function updateImage(){
     if (self.etat == "Mort") {    
-            document.getElementById("monImage").src = "ressources/tamagotchi_mort.gif";   
+            document.getElementById("monImage").src = "ressources/tamagotchi_mort.png";   
     } else if (self.etat == "Malade") {
         document.getElementById("monImage").src = "ressources/tamagotchi_malade.gif";
+    }else if(self.etat == "Normal"){
+        document.getElementById("monImage").src = "ressources/tamagotchi_normal.gif";
     }
 }
 
@@ -156,10 +158,16 @@ function init(){
     }
     document.getElementById('Dormir').addEventListener('click',dormir, true);
 
-    function hummeur(){
+    function jouer(){
         setHummeur(parseInt(hummeur.textContent) + 5 );
     }
-    document.getElementById('Jouer').addEventListener('click',hummeur, true);
+    document.getElementById('Jouer').addEventListener('click',jouer, true);
+
+    setFaim(60);
+    setSoif(60); 
+    setSante(60);
+    setDormir(60);
+    setHummeur(60);
 }
 
 

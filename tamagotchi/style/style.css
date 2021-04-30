@@ -1,40 +1,32 @@
-#progressBar {
+
+body{
+  background-color: antiquewhite;
+  width: ;
+}
+
+
+.progressBar {
     width: 10%;
-    height: 30px;
+    height: 20px;
     background-color: rgb(223, 217, 217);
   }
-  #faimBar {
-    width: 0%;
-    height: 30px;
-    background: green;
-  }
-  #soifBar {
-    width: 0%;
-    height: 30px;
-    background: green;
-  }
-  #santeBar {
-    width: 0%;
-    height: 30px;
-    background: green;
-  }
-  #dormirBar {
-    width: 0%;
-    height: 30px;
-    background: green;
-  }
-  #hummeurBar {
-    width: 0%;
-    height: 30px;
-    background: green;
-  }
+ 
 #caracteristique{
     
     display: inline-block;
+    bottom: 200px;
     
 }
 img{
-   
-    padding-left: 200px;
+
+    max-width: 400px;
+    left: 250px;
+    padding-right: 200px;
+    top: 20px;
+    position: absolute;
+    
 }
 
+section{
+  padding: 100px;
+}
