@@ -90,6 +90,21 @@ function updateControl() {
         document.getElementById('Dormir').style.display="none";
          
     }
+    else if (self.etat == "Endormi"){
+        document.getElementById('Soigner').style.display ="none";
+        document.getElementById('Nourrir').style.display="none";
+        document.getElementById('Boire').style.display="none";
+        document.getElementById('Jouer').style.display="none";
+        document.getElementById('Dormir').innerHTML="Réveiller";
+    }
+    else {
+        document.getElementById('Dormir').innerHTML="Dormir";
+        document.getElementById('Soigner').style.display ="inline";
+        document.getElementById('Nourrir').style.display="inline";
+        document.getElementById('Boire').style.display="inline";
+        document.getElementById('Jouer').style.display="inline";
+        
+    }
 }
 
 
@@ -178,12 +193,16 @@ function init(){
     document.getElementById('Soigner').addEventListener('click',soigner, true);
 
     function dormir(){
-        self.sleeping = true;
+        self.sleeping = !self.sleeping;
+        
         updateState();
+        updateImage();
+        updateControl();
 
         //setDormir(parseInt(sommeil.textContent) + 5 );
     }
     document.getElementById('Dormir').addEventListener('click',dormir, true);
+    
 
     function jouer(){
         setHummeur(parseInt(hummeur.textContent) + 5 );
