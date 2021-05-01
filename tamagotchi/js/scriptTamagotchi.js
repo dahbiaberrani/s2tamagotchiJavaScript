@@ -1,4 +1,19 @@
 var intervale = setInterval("vivre()",2000);
+
+// Fonction qui propose un nom à tamagotchi
+window.onload = function () {   
+    var monNom = prompt("Choisissez un nom:", "");
+    if(monNom != null) {
+        nom.textContent = monNom;
+    } else {
+        nom.textContent = "Tamagotchi 2021"
+    }
+    
+};
+
+
+
+
 // fonction qui garantie que la valeur des cractéristiques restent entre 0 et 100  
 function dansInterval(valeur){
     if (valeur > 100) {
@@ -37,20 +52,28 @@ function updateState(){
     if ( (parseInt(faim.textContent) == 0) || (parseInt(soif.textContent) == 0) || (parseInt(sante.textContent) == 0) || (parseInt(hummeur.textContent) == 0) || (parseInt(sommeil.textContent) == 0)){		
         self.etat = "Mort"; 
     }
+    else if (self.sleeping){
+        self.etat = "Endormi"; 
+    }
     else if (parseInt(sante.textContent) < 50) {
         self.etat = "Malade"; 
     }
-
+    else if (parseInt(sante.textContent) > 50) {
+        self.etat = "Normal"; 
+    }
 }
 
 // Fonction de mise à jour de l'image de tamagotchi
 function updateImage(){
     if (self.etat == "Mort") {    
             document.getElementById("monImage").src = "ressources/tamagotchi_mort.png";   
-    } else if (self.etat == "Malade") {
+    }else if (self.etat == "Malade") {
         document.getElementById("monImage").src = "ressources/tamagotchi_malade.gif";
     }else if(self.etat == "Normal"){
         document.getElementById("monImage").src = "ressources/tamagotchi_normal.gif";
+    }
+    else if (self.etat == "Endormi"){
+        document.getElementById("monImage").src = "ressources/tamagotchi_dorme.gif";
     }
 }
 
@@ -138,6 +161,7 @@ document.addEventListener('DOMContentLoaded', init, false);
 
 function init(){
     self.etat = "Normal";
+    self.sleeping = false;
     function nourrir(){
         setFaim( parseInt(faim.textContent) + 5 );      
     }
@@ -154,7 +178,10 @@ function init(){
     document.getElementById('Soigner').addEventListener('click',soigner, true);
 
     function dormir(){
-        setDormir(parseInt(sommeil.textContent) + 5 );
+        self.sleeping = true;
+        updateState();
+
+        //setDormir(parseInt(sommeil.textContent) + 5 );
     }
     document.getElementById('Dormir').addEventListener('click',dormir, true);
 
