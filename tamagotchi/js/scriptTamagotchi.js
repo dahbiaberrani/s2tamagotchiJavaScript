@@ -11,9 +11,6 @@ window.onload = function () {
     
 };
 
-
-
-
 // fonction qui garantie que la valeur des cractéristiques restent entre 0 et 100  
 function dansInterval(valeur){
     if (valeur > 100) {
@@ -167,10 +164,14 @@ function vivre() {
     setFaim( parseInt(faim.textContent) - entierAleatoire(1, 7) );
     setSoif( parseInt(soif.textContent) - entierAleatoire(1, 7) ); 
     setSante( parseInt(sante.textContent) - entierAleatoire(1, 7));
-    setDormir( parseInt(sommeil.textContent) - entierAleatoire(1, 7));
     setHummeur( parseInt(hummeur.textContent) - entierAleatoire(1, 7));
+    if (self.etat == "Endormi"){
+        setDormir(parseInt(sommeil.textContent) + 5 );
+    }
+    else{
+        setDormir( parseInt(sommeil.textContent) - entierAleatoire(1, 7));
+    }
 }
-
 
 document.addEventListener('DOMContentLoaded', init, false);
 
@@ -199,7 +200,7 @@ function init(){
         updateImage();
         updateControl();
 
-        //setDormir(parseInt(sommeil.textContent) + 5 );
+        
     }
     document.getElementById('Dormir').addEventListener('click',dormir, true);
     
