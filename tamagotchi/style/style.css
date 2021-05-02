@@ -1,23 +1,11 @@
 
-body{
-  
-  
-}
-
-
 .progressBar {
     width: 20%;
     height: 20px;
     background-color: rgb(223, 217, 217);
   }
  
-#caracteristique{
-    
-    display: inline-block;
-    bottom: 200px;
-    
-    
-}
+
 img{
 
     max-width: 400px;

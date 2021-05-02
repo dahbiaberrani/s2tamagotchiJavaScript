@@ -1,4 +1,4 @@
-var intervale = setInterval("vivre()",2000);
+var intervale = setInterval("vivre()",3000);
 
 // Fonction qui propose un nom à tamagotchi
 window.onload = function () {   
