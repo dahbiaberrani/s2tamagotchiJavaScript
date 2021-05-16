@@ -1,0 +1,80 @@
+<!doctype html>
+<html>
+<head>
+<title>Manipuler les chaines de caractères</title>
+<meta charset="utf-8">
+ <style type="text/css">
+ div{
+ border: 1px solid black;
+ }
+ .error{
+ color: green;
+ }
+ </style>
+</head>
+
+<body>
+    <div >
+        <input type="text" value="Bonjour" id="ch1"/>
+        <button onclick="str_fisrt_letter(document.getElementById('ch1').value)"> Tester
+        </button>
+        <p id="res1" class="error"></p>
+    </div>
+    <div >
+        <input type="text" value="adresse@domaine.com" id="ch2"/>
+        <button onclick="str_email(document.getElementById('ch2').value)">Tester</button>
+        <p id="res2" class="error"></p>
+    </div>
+    <div >
+        <input type="text" value="12test" id="ch3"/>
+        <button onclick="str_number(document.getElementById('ch3').value)"> Tester
+        </button>
+        <p id="res3" class="error"></p>
+    </div>
+    <div >
+        <input type="text" value="at31400toulouse" id="ch4"/>
+        <button onclick="str_replace(document.getElementById('ch4').value)"> Tester
+        </button>
+        <p id="res4" class="error"></p>
+    </div>
+</body>
+
+<script>
+    function str_fisrt_letter(chaine){
+        var reponseElement = document.getElementById("res1");
+
+        var res = chaine.toLowerCase();
+
+        if (res[0] >= 'a' && res[0] <= 'd'){
+            reponseElement.innerHTML = "True";
+        } else {
+            reponseElement.innerHTML = "False";
+        }
+          
+    }
+
+    function str_email(chaine){
+        var reponseElement = document.getElementById("res2");
+        if((chaine.match(new RegExp("@", "g")) || []).length === 1){
+            reponseElement.innerHTML = "True";
+        } else {
+            reponseElement.innerHTML = "False";
+        }     
+    }
+
+    function str_number(chaine){
+        var reponseElement = document.getElementById("res3");
+        if((chaine.match(new RegExp("[0-9]", "g")) || []).length > 0){
+            reponseElement.innerHTML = "True";
+        } else {
+            reponseElement.innerHTML = "False";
+        }         
+    }
+
+    function str_replace(chaine){
+        var reponseElement = document.getElementById("res4");
+        let re = new RegExp('[0-9]','g');
+        var respchaine = chaine.replace(re,'*');
+        reponseElement.innerHTML = respchaine
+    }
+</script>

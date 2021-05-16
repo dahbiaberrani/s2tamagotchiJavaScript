@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset=utf-8 />
+        <title>Créer un tableau</title>
+        <style type="text/css"> body {margin: 30px;}</style>
+    </head>
+    <body id ="body">
+
+ 
+<p>Entrez la valeur du rayon et obtenez le volume d'une sphère.</p>
+<form action  id="MonFormulaire">
+<label for="rayon">Rayon</label>
+<input type="text" name="rayon" id="rayon" required>
+<label for="volume">Volume</label><input type="text" name="volume" id="volume">
+<input type="button" value="Calculer" id="submit" onclick="calc()">
+
+<script>
+    function calc(){
+        let number=document.getElementById("rayon").value;
+        number=Number(number);
+    
+        // The formula for the volume of a sphere (4. π. r*r*r )/ 3
+        let sphere=(4*Math.PI*number*number*number)/3;
+    
+        //Cut the floating digits to two float
+        sphere =sphere .toFixed(2);
+        document.getElementById("volume").value =sphere;
+        volume.innerHTML = sphere; 
+    }
+    
+</script>
+</form>
+
+        <script>
+            function creerTable () {
+                // get the reference for the body
+                var body = document.getElementById("body");
+                            // creates a <table> element and a <tbody> element
+                var tbl = document.createElement("table");
+                var tblBody = document.createElement("tbody");
+
+                // creating all cells
+                for (var i = 0; i < 2; i++) {
+                    // creates a table row
+                    var row = document.createElement("tr");
+
+                    for (var j = 0; j < 2; j++) {
+                        // Create a <td> element and a text node, make the text
+                        // node the contents of the <td>, and put the <td> at
+                        // the end of the table row
+                        var cell = document.createElement("td");
+                        var cellText = document.createTextNode("cell in row "+i+", column "+j);
+                        cell.appendChild(cellText);
+                        row.appendChild(cell);
+                    }
+
+                // add the row to the end of the table body
+                tblBody.appendChild(row);
+                }
+                // put the <tbody> in the <table>
+                tbl.appendChild(tblBody);
+                // appends <table> into <body>
+                body.appendChild(tbl);
+                // sets the border attribute of tbl to 2;
+                tbl.setAttribute("border", "2");
+            }
+        </script>
+        <form>
+            <input type="button" onclick="creerTable()" value="Créer le tableau">
+        </form>
+    </body>
+</html>
